@@ -21,23 +21,6 @@ static double myFunction(double x)
 }
 
 
-
-/*IIntegralCalculator calculator;
-double result;
-
-// Формула Симпсона.
-calculator = new SimpsonCalculation();
-// result = calculator.Calculation(myFunction, 0, 1, 1000);
-result = await calculator.CalculationAsync(myFunction, 0, 1, 1000);
-Console.WriteLine($"Расчет по формуле Симпсона: {result}\n");
-
-// Метод трапеций.
-calculator = new TrapezoidCalculation((IMessageThrowable)messageService);
-result = calculator.Calculation(null, 0, 1, 1000);
-Console.WriteLine($"Расчет методом трапеций: {result}\n");*/
-
-
-
 // Формула Симпсона.
 IIntegralCalculator? calculator = serviceProvider.GetService<SimpsonCalculation>();
 Console.WriteLine($"Расчет по формуле Симпсона: {await calculator?.CalculationAsync(null, 0, 1, 1000)}\n");
