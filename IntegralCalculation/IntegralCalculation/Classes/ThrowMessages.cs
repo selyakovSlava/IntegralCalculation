@@ -2,6 +2,9 @@
 
 namespace IntegralCalculation.Classes
 {
+    /// <summary>
+    /// Сообщения для исключений.
+    /// </summary>
     public class ThrowMessages : IMessageThrowable
     {
 
