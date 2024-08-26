@@ -6,7 +6,8 @@ using Microsoft.Extensions.DependencyInjection;
 var services = new ServiceCollection()
     .AddTransient<IMessageThrowable, ThrowMessages>()
     .AddTransient<SimpsonCalculation>()
-    .AddTransient<TrapezoidCalculation>();
+    .AddTransient<TrapezoidCalculation>()
+    .AddTransient<RectangleCalculation>();
 
 var serviceProvider = services.BuildServiceProvider();
 
@@ -23,11 +24,15 @@ static double myFunction(double x)
 
 // Формула Симпсона.
 IIntegralCalculator? calculator = serviceProvider.GetService<SimpsonCalculation>();
-Console.WriteLine($"Расчет по формуле Симпсона: {await calculator?.CalculationAsync(null, 0, 1, 1000)}\n");
+Console.WriteLine($"Расчет по формуле Симпсона: {await calculator?.CalculationAsync(myFunction, 0, 1, 1000)}\n");
 
 // Метод трапеций.
 calculator = serviceProvider.GetService<TrapezoidCalculation>();
 Console.WriteLine($"Расчет методом трапеций: {calculator?.Calculation(myFunction, 0, 1, 1000)}\n");
+
+// Метод средних прямоугольников.
+calculator = serviceProvider.GetService<RectangleCalculation>();
+Console.WriteLine($"Расчет методом средних прямоугольников: {calculator?.Calculation(myFunction, 0, 1, 1000)}\n");
 
 
 Console.WriteLine("Программа завершена");
